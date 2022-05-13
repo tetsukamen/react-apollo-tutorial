@@ -9,27 +9,19 @@ import {
 } from "@apollo/client";
 
 const EXCHANGE_RATES = gql`
-  query GetExchangeRates {
-    rates(currency: "USD") {
-      currency
-      rate
-    }
+  {
+    hello
   }
 `;
 
 function ExchangeRates() {
   const { loading, error, data } = useQuery(EXCHANGE_RATES);
+  console.log(loading, error);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-
-  return data.rates.map(({ currency, rate }) => (
-    <div key={currency}>
-      <p>
-        {currency}: {rate}
-      </p>
-    </div>
-  ));
+  console.log(data.hello);
+  return <div>{data.hello}</div>;
 }
 
 function App() {
